@@ -1,0 +1,22 @@
+### WRAMP C ###
+## In this project, *.S and *.O are written by hand and should be preserved.
+## *.s and *.o are generated from *.c and *.S files.
+# Object files
+*.o
+# Assembly files
+*.s
+
+# Output files
+*.srec
+*.mem
+
+### Linux ###
+*~
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
