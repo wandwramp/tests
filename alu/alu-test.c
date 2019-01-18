@@ -1,4 +1,4 @@
-#include "iolib.h"
+#include "../iolib.h"
 #include "tester.h"
 
 typedef int bool_t;
