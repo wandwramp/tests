@@ -1,9 +1,9 @@
-# Minimal replacement for alu-test.c that drastically cuts down
+# Minimal replacement for serial-test.S that drastically cuts down
 # the filesize when those tests are not desired.
 
 .text
-.global run_alu_tests
-run_alu_tests:
+.global run_serial_tests
+run_serial_tests:
     subui $sp, $sp, 2
     sw $ra, 1($sp)
     la $1, msg
@@ -15,4 +15,4 @@ run_alu_tests:
     jr $ra
 
 .data
-msg: .asciiz "Skipping ALU tests.\r\n"
+msg: .asciiz "Skipping serial tests.\r\n"

@@ -1,14 +1,65 @@
 #include "iolib.h"
 
+RexSp_t* active_serial = RexSp1;
+
+int strcmp(const char* a, const char* b) {
+  while (*a != '\0' && *b != '\0')
+  {
+    if (*a != *b) {
+      if (*a < *b) {
+        return -1;
+      }
+      else return 1;
+    }
+    a++;
+    b++;
+  }
+  if (*a == '\0' && *b == '\0') {
+    return 0;
+  }
+  if (*a == '\0') {
+    return -1;
+  }
+  else return 1;
+}
+
+char getchar() {
+  /* wait until the RDR bit is on */
+  while (!(active_serial->Stat & 1)) {}
+  /* return the character */
+  return active_serial->Rx;
+}
+
+// NOTE: This function returns a pointer to the *end* of buf
+// after it has been populated with the string! This differs
+// to the implementation of gets in C's stdio.h
+char* gets(char* buf) {
+  char* curPos = buf;
+  char thischar;
+  do
+  {
+    thischar = getchar();
+    *curPos = thischar;
+    curPos++;
+  }
+  while (thischar != '\r');
+  
+  *curPos = '\n';
+  curPos++;
+  *curPos = '\0';
+  
+  return curPos;
+}
+
 int putchar(int c) {
   /* wait until the TDR bit is on */
-  while (!(RexSp1->Stat & 2)) {}
+  while (!(active_serial->Stat & 2)) {}
   /* write the character to the Tx register */
-  RexSp1->Tx = c;
+  active_serial->Tx = c;
   return c;
 }
 
-int puts(const char *s) {
+int puts(const char* s) {
   while (*s != '\0') {
     putchar(*s);
     s++;

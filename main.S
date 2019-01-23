@@ -17,12 +17,24 @@ alu_test_msg_end:
 
     # Continue if any of the rest of the tests fail
     # Serial 1
+    sw $0, 0($sp)
+    jal run_serial_tests
+    
+    la $1, switch_serial_msg
+    sw $1, 0($sp)
+    jal puts
+    la $1, 0x70000
+    sw $1, active_serial($0)
+    
     # Serial 2
+    addui $1, $0, 1
+    sw $1, 0($sp)
+    jal run_serial_tests
     # Parallel
     jal run_parallel_tests
     # Timer
 
-    la $1, all_tests_passed_msg
+    la $1, all_tests_complete_msg
     sw $1, 0($sp)
     jal puts
 
@@ -40,5 +52,8 @@ alu_test_fail_msg:
     .ascii "incorrectly, or the architecture is incorrect.\r\n"
     .asciiz "Exiting...\r\n"
 
-all_tests_passed_msg:
-    .asciiz "\r\nAll tests passed.\r\n\r\n"
+switch_serial_msg:
+    .asciiz "Check the second serial port for another test.\r\n"
+
+all_tests_complete_msg:
+    .asciiz "\r\nAll tests complete.\r\n\r\n"

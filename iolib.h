@@ -1,3 +1,5 @@
+#ifndef IOLIB_H
+#define IOLIB_H
 /**
  * Print an integer in decimal.
  */
@@ -21,6 +23,12 @@ int putchar(int c);
 int puts(const char *s);
 
 /**
+ * Gets a string from serial port 1.
+ * Returns the end of the string, not the start!
+ */
+char* gets(char* buf);
+
+/**
  * REX Serial Ports
  **/
 typedef volatile struct
@@ -33,3 +41,6 @@ typedef volatile struct
 } RexSp_t;
 
 #define RexSp1 		((RexSp_t*)0x70000)
+#define RexSp2 		((RexSp_t*)0x71000)
+
+#endif

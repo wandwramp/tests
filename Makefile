@@ -1,8 +1,7 @@
 DO_ALU_TESTS=      y
 DO_PARALLEL_TESTS= y
 DO_SERIAL_TESTS=   y
-DO_SERIAL2_TESTS=  y
-DO_TIMER_TESTS=    y
+DO_INTERRUPT_TESTS=y
 
 AS = wasm
 LD = wlink
@@ -17,6 +16,10 @@ OBJS = main.o iolib.o \
 	   $(if $(filter y,$(DO_PARALLEL_TESTS)), \
 			parallel/parallel-test.o, \
 			parallel/parallel-test-dummy.o \
+		) \
+	   $(if $(filter y,$(DO_SERIAL_TESTS)), \
+	   		serial/serial-test.o, \
+			serial/serial-test-dummy.o \
 		) \
 
 
@@ -36,9 +39,10 @@ all: tests.srec
 	$(TRIM) -o $@ $<
 
 tests.srec: $(OBJS)
-	$(LD) -o $@ $^
+	$(LD) -v -o $@ $^
 
 clean:
 	rm -f *.mem *.srec *.o *.s
 	rm -f alu/*.o alu/*.s
 	rm -f parallel/*.o
+	rm -f serial/*.o

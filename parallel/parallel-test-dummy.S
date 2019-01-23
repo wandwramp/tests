@@ -1,4 +1,4 @@
-# Minimal replacement for parallel-test.s that drastically cuts down
+# Minimal replacement for parallel-test.S that drastically cuts down
 # the filesize when those tests are not desired.
 
 .text
