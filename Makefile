@@ -21,6 +21,10 @@ OBJS = main.o iolib.o \
 	   		serial/serial-test.o, \
 			serial/serial-test-dummy.o \
 		) \
+	   $(if $(filter y,$(DO_INTERRUPT_TESTS)), \
+			interrupt/interrupt-test.o, \
+			interrupt/interrupt-test-dummy.o \
+		) \
 
 
 .PHONY: clean all
@@ -39,10 +43,11 @@ all: tests.srec
 	$(TRIM) -o $@ $<
 
 tests.srec: $(OBJS)
-	$(LD) -v -o $@ $^
+	$(LD) -o $@ $^
 
 clean:
 	rm -f *.mem *.srec *.o *.s
 	rm -f alu/*.o alu/*.s
 	rm -f parallel/*.o
 	rm -f serial/*.o
+	rm -f interrupt/*.o

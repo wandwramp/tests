@@ -23,8 +23,6 @@ alu_test_msg_end:
     la $1, switch_serial_msg
     sw $1, 0($sp)
     jal puts
-    la $1, 0x70000
-    sw $1, active_serial($0)
     
     # Serial 2
     addui $1, $0, 1
@@ -32,7 +30,8 @@ alu_test_msg_end:
     jal run_serial_tests
     # Parallel
     jal run_parallel_tests
-    # Timer
+    # Interrupts
+    jal run_interrupt_tests
 
     la $1, all_tests_complete_msg
     sw $1, 0($sp)
