@@ -22,7 +22,10 @@ OBJS = main.o iolib.o \
 			serial/serial-test-dummy.o \
 		) \
 	   $(if $(filter y,$(DO_INTERRUPT_TESTS)), \
-			interrupt/interrupt-test.o, \
+			interrupt/interrupt-test.o \
+			interrupt/timer-evec.o \
+			interrupt/parallel-evec.o \
+			interrupt/serial-evec.o, \
 			interrupt/interrupt-test-dummy.o \
 		) \
 
