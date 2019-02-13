@@ -83,7 +83,8 @@ STATE1_WAIT_FOR_CHAR:
     
     lw $9, 0x70001($0)
     lw $13, 0x70004($0)
-    andi $13, $13, 0x10         # Acknowledge recv interrupt only
+    #andi $13, $13, 0x10         # Acknowledge recv interrupt only ##TODO this is the wrong flag?
+	andi $13, $13, 0x1         # Acknowledge recv interrupt only ##TODO this is the wrong flag?
     sw $13, 0x70004($0)
     sw $9, ssm1_char($0)
     la $9, STATE1_SEND_CR

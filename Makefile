@@ -1,7 +1,7 @@
-DO_ALU_TESTS=      y
-DO_PARALLEL_TESTS= y
-DO_SERIAL_TESTS=   y
-DO_INTERRUPT_TESTS=y
+DO_ALU_TESTS=      n#not broken
+DO_PARALLEL_TESTS= n#not broken
+DO_SERIAL_TESTS=   n#not broken
+DO_INTERRUPT_TESTS=y#absoloutly broken
 
 AS = wasm
 LD = wlink
