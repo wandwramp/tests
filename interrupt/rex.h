@@ -50,10 +50,10 @@ typedef volatile struct
 	int RightSSD;
 	int Ctrl;
 	int Iack;
-	int ULeftSSD;
-	int URightSSD;
-	int LLeftSSD;
-	int LRightSSD;
+	int SSD0;
+	int SSD1;
+	int SSD2;
+	int SSD3;
 	int LEDs;
 } RexParallel_t;
 

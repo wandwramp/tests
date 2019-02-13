@@ -1,6 +1,6 @@
-DO_ALU_TESTS=      n#not broken
-DO_PARALLEL_TESTS= n#not broken
-DO_SERIAL_TESTS=   n#not broken
+DO_ALU_TESTS=      y#not broken
+DO_PARALLEL_TESTS= y#not broken
+DO_SERIAL_TESTS=   y#not broken
 DO_INTERRUPT_TESTS=y#absoloutly broken
 
 AS = wasm
@@ -25,7 +25,8 @@ OBJS = main.o iolib.o \
 			interrupt/interrupt-test.o \
 			interrupt/timer-evec.o \
 			interrupt/parallel-evec.o \
-			interrupt/serial-evec.o, \
+			interrupt/serial-evec.o \
+			interrupt/serialInts.o, \
 			interrupt/interrupt-test-dummy.o \
 		) \
 

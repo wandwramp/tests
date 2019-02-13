@@ -46,16 +46,18 @@ check_complete_loop_1:
     bnez $1, exit_loop1
     
     # Temporarily commented
-    #j check_complete_loop_1
+    j check_complete_loop_1
 
 exit_loop1:
     # Set up the initial state for the serial port state machines
-    la $1, STATE1_PRINT_INTRO
-    sw $1, ssm1_state($0)
+    #la $1, state_print_intro
+    #sw $1, ssm1_state($0)
     
     la $1, test_serial_msg
     sw $1, 0($sp)
     jal puts
+
+	jal init_serial_evec #setup the structs to handle the state
     
     # Disable the rest of the interrupts
     # Timer
