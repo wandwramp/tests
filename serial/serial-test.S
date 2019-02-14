@@ -29,7 +29,7 @@ test_which:
     la $2, text_chunk
     sw $2, 0($sp)
     jal puts
-    
+
     jal get_paste
     
     # Check if the paste is what it should be
@@ -104,6 +104,8 @@ found_error:
     .word 0
 
 welcome_msg:
+	.ascii "\033[2J" #clears and resets screen
+	.ascii "\033[01;01H"
     .ascii "Running serial tests" # This will get the newline too since it's unterminated
 newline:
     .asciiz "\r\n"
